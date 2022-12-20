@@ -1,0 +1,28 @@
+﻿@model LungHealth.AuthorizationServer.OpenIddict.ViewModels.RegisterViewModel;
+
+<form autocomplete="off" asp-route="Register">
+    <input type="hidden" asp-for="ReturnUrl"/>
+    <div class="card">
+        @Html.TextBoxFor(x=>x.EmailAddress, new { @class = "form-control form-control-lg form-control-last", @placeholder = "Email Address"})
+        @Html.ValidationMessageFor(x=>x.Password)
+
+        @Html.TextBoxFor(x=>x.PhoneNumber, new { @class = "form-control form-control-lg form-control-last", @placeholder = "Phone Number"})
+        @Html.ValidationMessageFor(x=>x.PhoneNumber)
+
+        @Html.PasswordFor(x=>x.Password, new { @class = "form-control form-control-lg form-control-last", @placeholder = "Password"})
+        @Html.ValidationMessageFor(x=>x.Password)
+
+        @Html.PasswordFor(x=>x.RepeatPassword, new { @class = "form-control form-control-lg form-control-last", @placeholder = "Confirm Password"})
+        @Html.ValidationMessageFor(x=>x.RepeatPassword)
+    </div>
+    @if (Model?.ErrorMessages?.Count > 0)
+    {
+        foreach (string error in Model.ErrorMessages)
+        {
+            <ul>@error</ul>  
+        }
+    }
+    <p>
+        <button type="submit" class="btn btn-dark btn-block mt-3">Register</button>
+    </p>
+</form>
